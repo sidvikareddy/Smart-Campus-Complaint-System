@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard - Smart Campus Complaints</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="dashboard-page student-dashboard">
+  <header class="topbar">
+    <h1 class="brand"><span class="brand-icon" aria-hidden="true">◆</span><span>Smart Campus Complaints</span><span class="brand-separator">·</span><span class="brand-role">Student</span></h1>
+    <div class="user">
+      <button type="button" id="userProfile" class="user-profile" aria-label="Open profile and logout">
+        <span class="avatar-wrap"><span class="avatar">👤</span><span class="online-dot"></span></span>
+        <span id="welcome"></span>
+      </button>
+      <div class="notification-menu">
+        <button type="button" id="notificationBtn" class="notification-btn" aria-label="Notifications" aria-expanded="false" aria-controls="notificationPanel">
+          <span class="bell-icon" aria-hidden="true">🔔</span><span id="notificationCount" class="notification-count">0</span>
+        </button>
+        <div id="notificationPanel" class="notification-panel" role="region" aria-label="Notifications">
+          <div class="notification-panel-head"><strong>Notifications</strong><button type="button" id="markNotificationsRead" class="link-button">Mark all read</button></div>
+          <div id="notificationList"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container dashboard-container">
+    <section class="card complaint-form-card">
+      <h2>Submit a new complaint</h2>
+      <form id="complaintForm">
+        <div class="row">
+          <div>
+            <label for="title">Title</label>
+            <select id="title" required>
+              <option value="" selected disabled>Select a common college issue</option>
+              <option>Projector or classroom equipment not working</option>
+              <option>Wi-Fi or internet connectivity issue</option>
+              <option>Power outage or electrical problem</option>
+              <option>Broken furniture or classroom maintenance issue</option>
+              <option>Cleanliness or sanitation issue</option>
+              <option>Water supply or drinking water problem</option>
+              <option>Washroom maintenance issue</option>
+              <option>Library resource or facility issue</option>
+              <option>Hostel room or accommodation issue</option>
+              <option>Campus security or safety concern</option>
+              <option>Parking or transport issue</option>
+              <option>Other campus facility issue</option>
+            </select>
+          </div>
+          <div>
+            <label for="category">Category</label>
+            <select id="category" required></select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="e.g. Block B, Room 204" />
+          </div>
+          <div>
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+        <label for="description">Description</label>
+        <textarea id="description" maxlength="2000" placeholder="Describe the problem in detail" required></textarea>
+        <label class="upload-zone" for="evidence">
+          <span class="upload-title">Photo evidence</span>
+          <small>Drop a JPEG or PNG here, or click to browse (maximum 5MB)</small>
+          <input type="file" id="evidence" accept="image/jpeg,image/png" />
+        </label>
+        <div id="evidencePreview" class="evidence-preview"></div>
+        <button type="submit">Submit complaint</button>
+        <div id="formAlert" class="alert"></div>
+        <div id="duplicateList" class="duplicate-list"></div>
+      </form>
+    </section>
+
+    <aside class="student-metrics" aria-label="Complaint metrics">
+      <section class="stats" id="stats"></section>
+    </aside>
+
+    <section class="card history-card">
+      <h2>My complaint history</h2>
+      <div class="filters">
+        <input type="search" id="filterSearch" placeholder="Search title or location" />
+        <select id="filterStatus"><option value="">All statuses</option></select>
+        <select id="filterPriority">
+          <option value="">All priorities</option><option>Low</option><option>Medium</option><option>High</option>
+        </select>
+        <select id="filterCategory"><option value="">All categories</option></select>
+        <button type="button" id="resetFilters" class="secondary">Reset</button>
+      </div>
+      <div id="list"></div>
+    </section>
+  </main>
+
+  <div class="logout-modal-bg" id="logoutModal">
+    <div class="logout-modal" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+      <h2 id="logoutTitle">Confirm Logout</h2>
+      <p>Are you sure you want to log out of the Smart Campus Complaints portal?</p>
+      <div class="logout-actions"><button type="button" id="cancelLogout" class="secondary">Cancel</button><button type="button" id="confirmLogout" class="danger">Log Out</button></div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

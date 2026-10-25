@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Campus Complaints - Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="auth-wrap">
+    <h1>Login to Smart Campus Complaints</h1>
+    <p class="sub">Access your campus dashboard.</p>
+
+    <div class="card">
+      <div class="tabs">
+        <button type="button" class="role-toggle active" data-role="student"><span>🎓</span> Student</button>
+        <button type="button" class="role-toggle" data-role="admin"><span>⚙</span> Admin</button>
+      </div>
+
+      <form id="loginForm">
+        <label for="loginIdentifier" id="loginIdentifierLabel">Student ID or Institutional Email</label>
+        <input type="text" id="loginIdentifier" placeholder="e.g. student ID or username@univ.edu" required />
+        <label for="loginPassword" id="loginPasswordLabel">Password</label>
+        <div class="password-field">
+          <input type="password" id="loginPassword" required />
+          <button type="button" id="togglePassword" class="password-toggle" aria-label="Show password">◉</button>
+        </div>
+        <div class="login-options">
+          <label class="checkbox-label"><input type="checkbox" id="rememberMe" checked /> Remember Me</label>
+          <a href="#" id="forgotPassword">Forgot Password?</a>
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="registerForm" style="display: none">
+        <div id="regNameField">
+          <label for="regName">Full name</label>
+          <input type="text" id="regName" required />
+        </div>
+        <div id="regIdentifierField">
+          <label for="regIdentifier" id="regIdentifierLabel">Student Roll No / ID</label>
+          <input type="text" id="regIdentifier" required />
+        </div>
+        <div id="regEmailField">
+          <label for="regEmail" id="regEmailLabel">Institutional Email</label>
+          <input type="email" id="regEmail" required />
+        </div>
+        <div id="regDepartmentField">
+          <label for="regDepartment">Department / Branch</label>
+          <input type="text" id="regDepartment" required />
+        </div>
+        <div id="regPasswordField">
+          <label for="regPassword">Password (min 6 characters)</label>
+          <input type="password" id="regPassword" minlength="6" required />
+        </div>
+        <div id="signupCodeField" style="display: none">
+          <label for="signupCode" id="signupCodeLabel">Admin Passcode / Security Token</label>
+          <input type="password" id="signupCode" autocomplete="off" />
+          <small class="form-hint">A valid invite code is required for privileged accounts.</small>
+          <div id="adminPasscodeAlert" class="field-alert" role="alert"></div>
+        </div>
+        <button type="submit">Create account</button>
+      </form>
+
+      <div id="alert" class="alert"></div>
+      <p class="signup-prompt">New to the portal? <button type="button" id="tabRegister" class="text-button">Sign up for a new account</button></p>
+      <p class="signin-prompt" style="display: none">Already registered? <button type="button" id="tabLogin" class="text-button">Sign in</button></p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/login.js?v=20261022-1935"></script>
+</body>
+</html>

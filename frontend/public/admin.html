@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard · Smart Campus Complaints</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="dashboard-page admin-dashboard">
+  <header class="topbar">
+    <h1 class="brand"><span class="brand-icon" aria-hidden="true">◆</span><span>Smart Campus Complaints</span><span class="brand-separator">·</span><span class="brand-role">Admin</span></h1>
+    <div class="user">
+      <button type="button" id="userProfile" class="user-profile" aria-label="Open profile and logout">
+        <span class="avatar-wrap"><span class="avatar">👤</span><span class="online-dot"></span></span>
+        <span id="welcome"></span>
+      </button>
+      <div class="notification-menu">
+        <button type="button" id="notificationBtn" class="notification-btn" aria-label="Notifications" aria-expanded="false" aria-controls="notificationPanel">
+          <span class="bell-icon" aria-hidden="true">🔔</span><span id="notificationCount" class="notification-count">0</span>
+        </button>
+        <div id="notificationPanel" class="notification-panel" role="region" aria-label="Notifications">
+          <div class="notification-panel-head"><strong>Notifications</strong><button type="button" id="markNotificationsRead" class="link-button">Mark all read</button></div>
+          <div id="notificationList"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container dashboard-container">
+    <section class="stats" id="stats"></section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <h2>Complaint management</h2>
+          <p>Review, assign, and resolve reported campus issues.</p>
+        </div>
+      </div>
+      <div class="filters">
+        <input type="text" id="search" placeholder="Search title, description, location" />
+        <select id="filterStatus"><option value="">All statuses</option></select>
+        <select id="filterCategory"><option value="">All categories</option></select>
+        <select id="filterPriority"><option value="">All priorities</option><option>Low</option><option>Medium</option><option>High</option></select>
+        <button type="button" id="applyBtn">Apply</button>
+        <button type="button" id="resetBtn" class="secondary">Reset</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Student</th><th>Complaint</th><th>Category</th>
+              <th>Priority</th><th>Status</th><th>Assignment</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="logout-modal-bg" id="logoutModal">
+    <div class="logout-modal" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+      <h2 id="logoutTitle">Confirm Logout</h2>
+      <p>Are you sure you want to log out of the Smart Campus Complaints portal?</p>
+      <div class="logout-actions"><button type="button" id="cancelLogout" class="secondary">Cancel</button><button type="button" id="confirmLogout" class="danger">Log Out</button></div>
+    </div>
+  </div>
+
+  <!-- Update status modal -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <h2 id="mTitle"></h2>
+      <p id="mDesc"></p>
+      <div id="mEvidence" class="evidence-list"></div>
+      <label for="mStatus">Status</label>
+      <select id="mStatus"></select>
+      <label for="mRemarks">Remarks for the student</label>
+      <textarea id="mRemarks" placeholder="Explain the action taken or next steps"></textarea>
+      <small id="rejectionHint" class="form-hint">A rejection reason is required when rejecting a complaint.</small>
+      <div class="row">
+        <div>
+          <label for="mDepartment">Assigned department</label>
+          <select id="mDepartment"></select>
+        </div>
+        <div>
+          <label for="mAssignee">Assigned staff member</label>
+          <select id="mAssignee"><option value="">Unassigned</option></select>
+        </div>
+      </div>
+      <div id="mAlert" class="alert"></div>
+
+      <h3 style="margin-bottom: 4px">Status audit history</h3>
+      <ul class="timeline" id="mHistory"></ul>
+      <h3 style="margin-bottom: 4px">Internal notes</h3>
+      <ul class="timeline" id="mNotes"></ul>
+      <textarea id="mNote" placeholder="Add an internal note for staff"></textarea>
+      <button type="button" id="mAddNote" class="secondary">Add internal note</button>
+
+      <div class="actions">
+        <button type="button" id="mCancel" class="secondary">Cancel</button>
+        <button type="button" id="mSave">Save update</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
